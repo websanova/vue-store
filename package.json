@@ -1,0 +1,20 @@
+{
+  "author": {
+    "name": "Websanova",
+    "url": "http://websanova.com",
+    "username": "websanova",
+    "email": "rob@websanova.com"
+  },
+  "dependencies": {},
+  "description": "Some simple utilities for Vue.",
+  "licenses": "MIT, GPL",
+  "devDependencies": {},
+  "keywords": ["vue", "vue.js", "store", "vuex"],
+  "main": "vue-store.js",
+  "name": "vue-store",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/websanova/vue-store"
+  },
+  "version": "0.2.0"
+}
