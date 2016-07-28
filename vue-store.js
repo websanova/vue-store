@@ -3,6 +3,7 @@ module.exports = (function () {
     var Store = {
         data() {
             return {
+                __ctx: null,
                 data: {}
             };
         },
@@ -23,12 +24,16 @@ module.exports = (function () {
                 return this;
             },
 
-            run(key, data, cb) {
-                return this.$get('data.' + key).call(this, data, cb);
+            run(key) {
+                var args = Array.prototype.slice.call(arguments, 1);
+
+                return this.$get('data.' + key).apply(this.__ctx, args);
             },
 
             watch(key, cb) {
-                this.$watch('data.' + key, cb);
+                this.$watch('data.' + key, function (newVal, oldVal) {
+                    cb.call(this.__ctx, newVal, oldVal);
+                });
             }
         }
     };
@@ -40,7 +45,11 @@ module.exports = (function () {
 
         Object.defineProperties(Vue.prototype, {
             $store: {
-                get () { return store; }
+                get () {
+                    store.__ctx = this;
+
+                    return store;
+                }
             }
         });
     }
