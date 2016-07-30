@@ -27,13 +27,17 @@ module.exports = (function () {
             run(key) {
                 var args = Array.prototype.slice.call(arguments, 1);
 
-                return this.$get('data.' + key).apply(this.__ctx, args);
+                this.$get('data.' + key).apply(this.__ctx, args);
+
+                return this;
             },
 
             watch(key, cb) {
                 this.$watch('data.' + key, function (newVal, oldVal) {
                     cb.call(this.__ctx, newVal, oldVal);
                 });
+
+                return this;
             }
         }
     };
