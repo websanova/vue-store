@@ -25,7 +25,7 @@ The values in the store can be accessed directly any time.
 ~~~
 this.$store.products.all();
 this.$store.products.current;
-~~
+~~~
 
 However we may likely want to have some context when using our store values. When using `get` and `watch` you will always have the current components scope.
 
