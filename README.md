@@ -39,7 +39,7 @@ We can also do a set call.
 ~~~
 this.$store.set('products.current', {});
 this.$store.set('products.current', function () {});
-~~
+~~~
 
 If you don't like that just use your own context.
 
