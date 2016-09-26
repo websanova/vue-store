@@ -6,15 +6,15 @@
     "email": "rob@websanova.com"
   },
   "dependencies": {},
-  "description": "Some simple utilities for Vue.",
+  "description": "Simple store utility for Vue.js.",
   "licenses": "MIT, GPL",
   "devDependencies": {},
   "keywords": ["vue", "vue.js", "store", "vuex"],
-  "main": "vue-store.js",
-  "name": "vue-store",
+  "main": "src/index.js",
+  "name": "@websanova/vue-store",
   "repository": {
     "type": "git",
     "url": "https://github.com/websanova/vue-store"
   },
-  "version": "0.3.0"
+  "version": "0.4.0"
 }

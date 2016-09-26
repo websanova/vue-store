@@ -1,169 +1,48 @@
-# vue-store
+# Vue Store
 
-A simple light-weight Vue "store" alternative to `vuex`.
+A simple Vue instance wrapper for use as a global store.
+
+Because we are just using a Vue instance here we get all the same Vue functionality out of the box.
+
+
+## Install
+
+~~~
+> sudo npm install @websanova/vue-store
+~~~    
+
+~~~
+Vue.use(require('@websanova/vue-store'), {
+    products: require('./store/products.js')
+});
+~~~
 
 
 ## Usage
 
-The plugin can be initialized with an initial set of values.
+The values in the store can be accessed directly any time.
 
-```
-Vue.install(require('vue-store'))
-```
+~~~
+this.$store.products.all();
+this.$store.products.current;
+~~
 
-Or
+However we may likely want to have some context when using our store values. When using `get` and `watch` you will always have the current components scope.
 
-```
-Vue.use(require('vue-store'), {
-    users: require('./actions/users.js')
-    ...
-});
-```
+~~~
+this.$store.get('products.all')();
+this.$store.watch('products.current', function () {});
+~~~
 
+We can also do a set call.
 
-## Methods
+~~~
+this.$store.set('products.current', {});
+this.$store.set('products.current', function () {});
+~~
 
-**`set`**
+If you don't like that just use your own context.
 
-Anything can be set whether it's a variable or function.
-
-```
-this.$store.set('some.key.value', 'value');
-```
-
-The `set` function can also be chained.
-
-```
-this.$store
-    .set('some.key.value', 'value')
-    .set('some.other.value', 'value')
-    .run('some.func');
-```
-
-
-**`get`**
-
-Retrieve a value, if a function is stored, it will be returned. It will NOT be executed use `$store.run` to execute.
-
-```
-this.$store.get('some');           // Object
-this.$store.get('some.key');       // Object
-this.$store.get('some.key.value'); // String
-```
-
-**`clr`**
-
-A shorthand to set the value to to `undefined`.
-
-```
-this.$store.clr('some.key');
-```
-
-Can also be chained.
-
-```
-this.$store
-    .clr('some.key')
-    .clr('another.key')
-    .set('new.val')
-    .run('some.func');
-```
-
-**`run`**
-
-This is used to explicitly run a function stored in the store.
-
-```
-this.$store.run('some.func', data, cb);
-```
-
-**`watch`**
-
-Set a watch on any part of a value or object.
-
-```
-this.$store.watch('some.val', function (newVal, oldVal) {
-    
-});
-```
-
-
-## Example
-
-Below is a full-ish example of the store in action.
-
-Require a user store on init:
-
-```
-Vue.use(require('vue-store'), {
-    users: require('./actions/users.js')
-});
-
-```
-
-Our `users` file. We can store functions and variables here:
-
-```
-module.exports = {
-    state: null,
-    reset: function () {
-        this.clr('users.status');
-        this.clr('users.data');
-    },
-    fetch: function (data, cb) {
-        this.$http.get('users', data, function (res) {
-            this.$store.set('users.data', res.data);
-            this.$store.set('users.status', 'sent');
-
-            if (cb) { cb(res.data); };
-        });
-    }
-};
-```
-
-A sample of what a users component might look like:
-
-```
-<template>
-    <div v-if="!$store.get('users.status')">
-        Loading...
-    </div>
-
-    <div v-if="$store.get('users.status') === 'sent'" v-for="user in $store.get('users.data').data">
-        {{ user._id }} | {{ user.email }} | <a v-on:click="loginAs(user)" href="javascript:void(0);">login as</a>
-    </div>
-</template>
-
-<script>
-    export default {
-        data() {
-            return {
-                users: []
-            };
-        },
-        watch: {
-            users() {
-                console.log('local users watch');
-            }
-        },
-        created() {
-            this.$store.run('users.reset');
-        },
-        ready() {
-            var _this = this;
-
-            this.$store.watch('users.data', function (newVal, oldVal) {
-                console.log('store users.data watch');
-            });
-
-            this.$store.watch('users.data.data', function (newVal, oldVal) {
-                console.log('store users.data.data watch');
-            });
-
-            _this.$store.run('users.fetch', {page: 1}, function (data) {
-                _this.users = data;
-            });
-        }
-    }
-</script>
-```
+~~~
+this.$store.products.all.call(this);
+~~~
