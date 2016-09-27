@@ -14,7 +14,7 @@ module.exports = (function () {
                 get: function() {
                     var _this = this;
 
-                    store.set = function (key) { store.$set(key); return store; }
+                    store.set = function (key, val) { store.$set(key, val); return store; }
                     store.watch = function (key, func) { store.$watch(key, func.bind(_this)); return store; }
                     store.get = function (key) { return store.$get(key).bind(_this); }
 
