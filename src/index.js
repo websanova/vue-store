@@ -1,13 +1,9 @@
 module.exports = (function () {
     return function install(Vue, data) {
         var key,
-            store = new Vue();
-
-        data = data || {};
-
-        for (key in data) {
-            store[key] = data[key];
-        }
+            store = new Vue({
+                data: data || {}
+            });
 
         function indexGet(obj, i) { return obj[i]; }
         
