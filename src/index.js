@@ -61,7 +61,7 @@ module.exports = (function () {
         return name;
     }
 
-    function Toggle(values, options) {
+    function Store(values, options) {
         this.options = options;
 
         this.watch = new options.Vue({
@@ -73,7 +73,7 @@ module.exports = (function () {
         });
     }
 
-    Toggle.prototype.set = function (key, val) {
+    Store.prototype.set = function (key, val) {
         var i, ii,
             obj = this.watch.data,
             name = _init.call(this, key).split('.');
@@ -88,7 +88,7 @@ module.exports = (function () {
         }
     };
 
-    Toggle.prototype.get = function (key) {
+    Store.prototype.get = function (key) {
         var obj = _getObj.call(this.$store, key);
 
         if (typeof obj === 'function') {
@@ -98,11 +98,15 @@ module.exports = (function () {
         return obj;
     };
 
-    Toggle.prototype.find = function (haystack, needle, key) {
+    Store.prototype.find = function (haystack, needle, key) {
         var i, ii,
             obj = _getObj.call(this, haystack);
 
         key = key || 'id';
+
+        if ( ! obj) {
+            return undefined;
+        }
 
         if (obj.constructor === Array) {
             for (i = 0, ii = obj.length; i < ii; i++) {
@@ -131,7 +135,7 @@ module.exports = (function () {
 
         options.Vue = Vue;
 
-        store = new Toggle(values, options),
+        store = new Store(values, options),
         _get = store.get;
 
         Object.defineProperties(Vue.prototype, {
