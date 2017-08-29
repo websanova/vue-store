@@ -89,7 +89,7 @@ module.exports = (function () {
     };
 
     Store.prototype.get = function (key) {
-        var obj = _getObj.call(this.$store, key);
+        var obj = _getObj.call(this.$store || this, key);
 
         if (typeof obj === 'function') {
             return obj.bind(this);
@@ -137,6 +137,8 @@ module.exports = (function () {
 
         store = new Store(values, options),
         _get = store.get;
+
+        Vue.store = store;
 
         Object.defineProperties(Vue.prototype, {
             $store: {
