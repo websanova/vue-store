@@ -28,8 +28,8 @@ module.exports = (function () {
         for (i = 0, ii = name.length; i < ii; i++ ) {
             obj = obj[name[i]];
 
-            if ( ! obj) {
-                return undefined;
+            if (obj === undefined || obj === null) {
+                return obj;
             }
         }
 
@@ -44,11 +44,11 @@ module.exports = (function () {
         obj = this.watch.data;
 
         for (i = 0, ii = _name.length; i < ii; i++) {
-            if ( ! obj[_name[i]]) {
+            if (obj[_name[i]] === undefined || obj[_name[i]] === null) {
 
                 // If last one.
                 if (i + 1 === ii) {
-                    this.options.Vue.set(obj, _name[i], undefined);
+                    this.options.Vue.set(obj, _name[i], obj[_name[i]]);
                 }
                 else {
                     this.options.Vue.set(obj, _name[i], {});
@@ -104,8 +104,8 @@ module.exports = (function () {
 
         key = key || 'id';
 
-        if ( ! obj) {
-            return undefined;
+        if (obj === undefined || obj === null) {
+            return obj;
         }
 
         if (obj.constructor === Array) {
