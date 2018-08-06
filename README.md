@@ -314,11 +314,18 @@ Return errors from response formatted by `parseErrorResponse` option.
 
 ### `http`
 
-Set the http processor to use. By default assume `Vue.http` via `vue-resource`.
+Set the http processor to use.
+
+By default assumes `Vue.http` via `vue-resource`.
 
 ### `parseSuccessResponse`
 
-Parse the success response. By default returns `res.data.data`.
+Parse the success response.
+
+Default: `return res.data.data`
 
 ### `parseErrorResponse`
 
+Parse the error response.
+
+Default: `return res.data.errors || [{rule: res.data.code, msg: res.data.msg}];`
