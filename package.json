@@ -1,20 +1,36 @@
 {
+  "name": "@websanova/vue-store",
+
+  "description": "A simple, light weight and intuitive store utility for Vue.js.",
+  
+  "keywords": ["vue", "vue.js", "store", "vuex", "plugin"],
+
   "author": {
     "name": "Websanova",
     "url": "http://websanova.com",
     "username": "websanova",
     "email": "rob@websanova.com"
   },
-  "dependencies": {},
-  "description": "Simple store utility for Vue.js.",
-  "licenses": "MIT, GPL",
-  "devDependencies": {},
-  "keywords": ["vue", "vue.js", "store", "vuex"],
-  "main": "src/index.js",
-  "name": "@websanova/vue-store",
+  
+  "main": "dist/vue-store.min.js",
+  
+  "version": "1.0.0-beta",
+  
   "repository": {
     "type": "git",
     "url": "https://github.com/websanova/vue-store"
   },
-  "version": "0.7.7"
+  
+  "licenses": "MIT, GPL",
+
+  "devDependencies": {
+    "webpack": "3.4.1",
+    "babel-core": "6.24.1",
+    "babel-loader": "7.0.0",
+    "babel-preset-blue": "^1.0.0-beta.29"
+  },
+  
+  "scripts": {
+    "build": "node ./build.js"
+  }
 }
