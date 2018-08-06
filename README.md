@@ -2,9 +2,9 @@
 
 A simple easy access store utility for Vue.js
 
-This is an alternative to Vuex which requires a lot more bootstrapping and centralization.
+This is a simplified alternative to Vuex which doesn't require as much boostrapping or know how.
 
-This plugin makes the store more accessible easy access methods like `set`, `get`, `fetch`, `once`, `silent`, etc.
+This plugin makes the store more accessible through easy access methods like `set`, `get`, `fetch`, `once`, `silent`.
 
 
 
