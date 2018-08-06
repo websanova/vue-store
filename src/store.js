@@ -35,9 +35,6 @@ module.exports = function () {
     }
 
     function __isEmpty(data) {
-
-        console.log(data);
-
         if (
             data === undefined ||
             data === null ||
