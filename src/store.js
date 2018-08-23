@@ -75,9 +75,8 @@ module.exports = function () {
     }
 
     function __options(key, url, options) {
-        options = (__isObject(url) ? url : options) || {};
+        options = (__isObject(url) ? url : options) || {url: url};
 
-        options.url = url;
         options.key = key;
 
         options.success = function (res) {
