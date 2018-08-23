@@ -14,7 +14,7 @@
   
   "main": "dist/vue-store.min.js",
   
-  "version": "1.0.1-beta",
+  "version": "1.0.2-beta",
   
   "repository": {
     "type": "git",
