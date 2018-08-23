@@ -312,7 +312,13 @@ module.exports = function () {
     };
 
     Store.prototype.get = function (name, def) {
-        return _get(name, def);
+        var get = _get(name, def);
+
+        if (get === undefined) {
+            return _set(name, undefined);
+        }
+
+        return get;
     };
 
     Store.prototype.set = function (name, data) {
