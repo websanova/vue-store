@@ -163,7 +163,7 @@ module.exports = function () {
         vm.isLoadingSilent = vm.state === 'loading-silent' ? true : false;
         vm.isError = vm.state === 'error' ? true : false;
         vm.isSuccess = vm.state === 'success' ? true : false;
-        vm.isLoaded = vm.state === 'success' ? true : false;
+        vm.isLoaded = (vm.isLoaded || vm.state === 'success') ? true : false;
     }
 
     function _get(name, def) {
