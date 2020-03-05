@@ -11,21 +11,21 @@ This plugin makes the store more accessible through easy access methods like `se
 ## Install
 
 ```bash
-$ sudo npm install @websanova/vue-upload
+$ sudo npm install @websanova/vue-store
 ``` 
 
 Require in the project.
 
 ```javascript
-import vueUpload from '@websanova/vue-upload';
+import VueStore from '@websanova/vue-store';
 
-Vue.use(vueUpload);
+Vue.use(VueStore);
 ```
 
 OR
 
 ```javascript
-Vue.use(require('@websanova/vue-upload').default);
+Vue.use(require('@websanova/vue-store').default);
 ```
 
 
